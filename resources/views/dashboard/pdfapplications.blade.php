@@ -23,7 +23,7 @@
     header: page-header;
     footer: page-footer;
     background: url({{ public_path('images/background_demo.png') }});
-    background-size: cover;              
+    background-size: cover;
     background-repeat: no-repeat;
     background-position: center center;
   }
@@ -55,7 +55,7 @@
     <thead>
       <tr>
         <th width="20%">Team</th>
-        <th>Members</th>
+{{--        <th>Members</th>--}}
         <th>Event & Amount</th>
         <th>TrxId</th>
         <th>Registration ID</th>
@@ -67,20 +67,20 @@
       @foreach($applications as $application)
       <tr>
         <td>{{ $application->team }}</td>
-        <td>
-          @if($application->member1 != '')
-            {{ $application->member1 }}
-          @endif
-          @if($application->member2 != '')
-            , {{ $application->member2 }}
-          @endif
-          @if($application->member3 != '')
-            , {{ $application->member3 }}
-          @endif
-          @if($application->member4 != '')
-            , {{ $application->member4 }}
-          @endif
-        </td>
+{{--        <td>--}}
+{{--          @if($application->member1 != '')--}}
+{{--            {{ $application->member1 }}--}}
+{{--          @endif--}}
+{{--          @if($application->member2 != '')--}}
+{{--            , {{ $application->member2 }}--}}
+{{--          @endif--}}
+{{--          @if($application->member3 != '')--}}
+{{--            , {{ $application->member3 }}--}}
+{{--          @endif--}}
+{{--          @if($application->member4 != '')--}}
+{{--            , {{ $application->member4 }}--}}
+{{--          @endif--}}
+{{--        </td>--}}
         <td>{{ $application->event_name }}<br/><span style="font-family: Kalpurush;">৳</span> {{ $application->amount }}</td>
         <td>{{ $application->trxid }}</td>
         <td><big><b>{{ $application->registration_id }}</b></big></td>
@@ -97,7 +97,7 @@
     <table>
       <tr>
         <td width="50%">
-          
+
         </td>
         <td align="right" style="color: #525659;">
           Page: {PAGENO}/{nbpg}

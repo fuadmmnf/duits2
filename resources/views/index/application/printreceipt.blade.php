@@ -22,7 +22,7 @@
       /*z-index: -1;*/
       opacity: 0.1;
     }
-    
+
     @media print {
       *, :after, :before {
           color: inherit !important;
@@ -82,10 +82,10 @@
             <th width="50%">Contact:</th>
             <td>{{ $application->mobile }}</td>
           </tr>
-          <tr>
-            <th width="50%">Address:</th>
-            <td>{{ $application->address }}</td>
-          </tr>
+{{--          <tr>--}}
+{{--            <th width="50%">Address:</th>--}}
+{{--            <td>{{ $application->address }}</td>--}}
+{{--          </tr>--}}
           <tr>
             <th width="50%">Amount:</th>
             <td>৳ {{ $application->amount }}, {{ payment_status($application->payment_status) }}</td>
@@ -100,7 +100,7 @@
           </tr>
         </thead>
       </table>
-  
+
       <h4><b>Award &amp; Prizes:</b></h4>
       <ul>
         <li>Champion &amp; Runners-up Team will be awarded with Prize money.</li>

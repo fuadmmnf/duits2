@@ -74,7 +74,7 @@
                             @else
                               <img src="{{ asset('images/user.png')}}" class="user-image" alt="User Image">
                             @endif
-                            
+
                             {{ Auth::User()->name }}</a>
                             <ul class="dropdown-menu" style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
                               <!-- User image -->
@@ -128,7 +128,7 @@
                                   @endif
                                 </div>
                               </li>
-                            </ul>                            
+                            </ul>
                         </li>
                     </ul>
                 </div>
@@ -188,7 +188,7 @@
                     <li class="{{ Request::is('dashboard/applications') ? 'active' : '' }}">
                         <a href="{{ route('dashboard.applications') }}">
                             <i class="fa fa-fw fa-trophy"></i>
-                            <span>IT Fest Applications</span>
+                            <span>Program Applications</span>
                         </a>
                     </li>
                     <li class="{{ Request::is('dashboard/blogs') ? 'active' : '' }}">

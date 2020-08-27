@@ -38,23 +38,23 @@ class IndexController extends Controller
     {
         $notices = Notice::orderBy('id', 'desc')->get()->take(4);
         $blogs = Blog::orderBy('id', 'DESC')->get()->take(3);
-        
+
         $appinlife = Application::where('event_id', 1)->count();
         $roboproject = Application::where('event_id', 2)->count();
         $itproject = Application::where('event_id', 3)->count();
         $gamingcontest = Application::where('event_id', 6)
-                                    ->orWhere('event_id', 7)
-                                    ->orWhere('event_id', 8)
-                                    ->count();
+            ->orWhere('event_id', 7)
+            ->orWhere('event_id', 8)
+            ->count();
 
 
         return view('index.index')
-                    ->withBlogs($blogs)
-                    ->withNotices($notices)
-                    ->withAppinlife($appinlife)
-                    ->withRoboproject($roboproject)
-                    ->withItproject($itproject)
-                    ->withGamingcontest($gamingcontest);
+            ->withBlogs($blogs)
+            ->withNotices($notices)
+            ->withAppinlife($appinlife)
+            ->withRoboproject($roboproject)
+            ->withItproject($itproject)
+            ->withGamingcontest($gamingcontest);
     }
 
     public function getJourney()
@@ -96,11 +96,11 @@ class IndexController extends Controller
     public function getMembers()
     {
         $members = User::where('role', 'alumni')
-                       ->where('payment_status', 1)
-                       ->orderBy('degree', 'asc')
-                       ->orderBy('batch', 'asc')
-                       ->orderBy('roll', 'asc')
-                       ->get();
+            ->where('payment_status', 1)
+            ->orderBy('degree', 'asc')
+            ->orderBy('batch', 'asc')
+            ->orderBy('roll', 'asc')
+            ->get();
         return view('index.members')->withMembers($members);
     }
 
@@ -125,7 +125,7 @@ class IndexController extends Controller
         //     $message->email = htmlspecialchars(preg_replace("/\s+/", " ", $request->email));
         //     $message->message = htmlspecialchars(preg_replace("/\s+/", " ", $request->message));
         //     $message->save();
-            
+
         //     Session::flash('success', 'আপনার বার্তা আমাদের কাছে পৌঁছেছে। ধন্যবাদ!');
         //     return redirect()->route('index.contact');
         // } else {
@@ -143,38 +143,38 @@ class IndexController extends Controller
         $blogs = Blog::where('user_id', Auth::user()->id)->get();
         $categories = Category::all();
         $user = User::where('unique_key', $unique_key)->first();
-        if(Auth::user()->unique_key == $unique_key) {
+        if (Auth::user()->unique_key == $unique_key) {
             return view('index.profile')
-                    ->withUser($user)
-                    ->withCategories($categories)
-                    ->withBlogs($blogs);
+                ->withUser($user)
+                ->withCategories($categories)
+                ->withBlogs($blogs);
         } else {
             Session::flash('info', 'Redirected to your profile!');
-            return redirect()->route('index.profile', Auth::user()->unique_key); 
+            return redirect()->route('index.profile', Auth::user()->unique_key);
         }
-        
+
     }
 
     public function storeApplication(Request $request)
     {
-        $this->validate($request,array(
-            'name'                      => 'required|max:255',
-            'email'                     => 'required|email|unique:users,email',
-            'phone'                     => 'required|numeric',
-            'dob'                       => 'required|max:255',
-            'degree'                    => 'required|max:255',
-            'batch'                     => 'required|max:255',
-            'roll'                      => 'required|max:255',
-            'passing_year'              => 'required|numeric',
-            'current_job'               => 'sometimes|max:255',
-            'designation'               => 'sometimes|max:255',
-            'address'                   => 'required|max:255',
-            'fb'                        => 'sometimes|max:255',
-            'twitter'                   => 'sometimes|max:255',
-            'gplus'                     => 'sometimes|max:255',
-            'linkedin'                  => 'sometimes|max:255',
-            'image'                     => 'required|image|max:300',
-            'password'                  => 'required|min:8|same:password_confirmation'
+        $this->validate($request, array(
+            'name' => 'required|max:255',
+            'email' => 'required|email|unique:users,email',
+            'phone' => 'required|numeric',
+            'dob' => 'required|max:255',
+            'degree' => 'required|max:255',
+            'batch' => 'required|max:255',
+            'roll' => 'required|max:255',
+            'passing_year' => 'required|numeric',
+            'current_job' => 'sometimes|max:255',
+            'designation' => 'sometimes|max:255',
+            'address' => 'required|max:255',
+            'fb' => 'sometimes|max:255',
+            'twitter' => 'sometimes|max:255',
+            'gplus' => 'sometimes|max:255',
+            'linkedin' => 'sometimes|max:255',
+            'image' => 'required|image|max:300',
+            'password' => 'required|min:8|same:password_confirmation'
         ));
 
         $application = new User();
@@ -196,10 +196,10 @@ class IndexController extends Controller
         $application->linkedin = htmlspecialchars(preg_replace("/\s+/", " ", $request->linkedin));
 
         // image upload
-        if($request->hasFile('image')) {
-            $image      = $request->file('image');
-            $filename   = str_replace(' ','',$request->name).time() .'.' . $image->getClientOriginalExtension();
-            $location   = public_path('/images/users/'. $filename);
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $filename = str_replace(' ', '', $request->name) . time() . '.' . $image->getClientOriginalExtension();
+            $location = public_path('/images/users/' . $filename);
             Image::make($image)->resize(250, 250)->save($location);
             $application->image = $filename;
         }
@@ -219,7 +219,7 @@ class IndexController extends Controller
         // generate unique_key
         $application->unique_key = $unique_key;
         $application->save();
-        
+
         Session::flash('success', 'You have registered Successfully!');
         Auth::login($application);
         return redirect()->route('index.profile', $unique_key);
@@ -232,67 +232,71 @@ class IndexController extends Controller
 
     public function storeITFestApplication(Request $request)
     {
-        $this->validate($request,array(
-            'event'             => 'required',
-            'team'              => 'required|max:255',
-            'member1'           => 'sometimes|max:255',
-            'member2'           => 'sometimes|max:255',
-            'member3'           => 'sometimes|max:255',
-            'member4'           => 'sometimes|max:255',
-            'institution'       => 'required|max:255',
-            'address'           => 'required|max:255',
-            'email'            => 'required|email',
-            'mobile'            => 'required|numeric',
-            'emergencycontact'  => 'required|numeric',
-            'image'             => 'required|image|max:300'
+        $this->validate($request, array(
+            'event' => 'required',
+            'team' => 'required|max:255',
+            'member1' => 'sometimes|max:255',
+            'member2' => 'sometimes|max:255',
+            'member3' => 'sometimes|max:255',
+            'member4' => 'sometimes|max:255',
+            'institution_type' => 'required|max:255',
+            'institution' => 'required|max:255',
+            'address' => 'sometimes|max:255',
+            'email' => 'required|email',
+            'mobile' => 'required|numeric',
+            'emergencycontact' => 'sometimes|numeric',
+            'image' => 'sometimes|image|max:300'
         ));
         $application = new Application;
         $event = explode(',', $request->event);
         $application->event_id = $event[0];
         $application->event_name = $event[1];
-        
+
         $application->team = htmlspecialchars(preg_replace("/\s+/", " ", ucwords($request->team)));
-        $application->member1 = htmlspecialchars(preg_replace("/\s+/", " ", ucwords($request->member1)));
-        $application->member2 = htmlspecialchars(preg_replace("/\s+/", " ", ucwords($request->member2)));
-        $application->member3 = htmlspecialchars(preg_replace("/\s+/", " ", ucwords($request->member3)));
-        $application->member4 = htmlspecialchars(preg_replace("/\s+/", " ", ucwords($request->member4)));
+//        $application->member1 = htmlspecialchars(preg_replace("/\s+/", " ", ucwords($request->member1)));
+//        $application->member2 = htmlspecialchars(preg_replace("/\s+/", " ", ucwords($request->member2)));
+//        $application->member3 = htmlspecialchars(preg_replace("/\s+/", " ", ucwords($request->member3)));
+//        $application->member4 = htmlspecialchars(preg_replace("/\s+/", " ", ucwords($request->member4)));
+        $application->institution_type = $request->institution_type;
         $application->institution = htmlspecialchars(preg_replace("/\s+/", " ", ucwords($request->institution)));
         $application->class = 'text';
-        $application->address = htmlspecialchars(preg_replace("/\s+/", " ", ucwords($request->address)));
+//        $application->address = htmlspecialchars(preg_replace("/\s+/", " ", ucwords($request->address)));
         $application->email = $request->email;
         $application->mobile = $request->mobile;
-        $application->emergencycontact = $request->emergencycontact;
-        
+//        $application->emergencycontact = $request->emergencycontact;
+        $application->emergencycontact = $request->mobile;
+
         // image upload
-        if($request->hasFile('image')) {
-            $image      = $request->file('image');
-            $nowdatetime = Carbon::now();
-            $filename   = str_replace(' ','',$application->team).$nowdatetime->format('YmdHis') .'.' . $image->getClientOriginalExtension();
-            $location   = public_path('images/registrations/'. $filename);
-            Image::make($image)->resize(200, 200)->save($location);
-            $application->image = $filename;
-        }
-        
-        $application->registration_id = $event[0]. random_string(6);
-        
+//        if ($request->hasFile('image')) {
+//            $image = $request->file('image');
+//            $nowdatetime = Carbon::now();
+//            $filename = str_replace(' ', '', $application->team) . $nowdatetime->format('YmdHis') . '.' . $image->getClientOriginalExtension();
+//            $location = public_path('images/registrations/' . $filename);
+//            Image::make($image)->resize(200, 200)->save($location);
+//            $application->image = $filename;
+//        }
+
+        $application->registration_id = $event[0] . random_string(6);
+
         // amounts to register
-        $amounts=array("1"=>"1500","2"=>"1500","3"=>"1500","4"=>"1000","5"=>"1500","6"=>"300","7"=>"500","8"=>"2000");
-        if($amounts[$event[0]]) {
+//        $amounts = array("1" => "1500", "2" => "1500", "3" => "1500", "4" => "1000", "5" => "1500", "6" => "300", "7" => "500", "8" => "2000");
+        $amounts = array("1" => "100", "2" => "100", "3" => "100", "4" => "100");
+        if ($amounts[$event[0]]) {
             $application->amount = $amounts[$event[0]];
         }
         $application->payment_status = 0;
         $application->card_type = '';
         //dd($application);
         $application->save();
-        Session::flash('success','Registration is complete!');
-        Session::flash('warning','You need to make the payment');
+        Session::flash('success', 'Registration is complete!');
+        Session::flash('warning', 'You need to make the payment');
         return redirect(Route('application.payorcheck', $application->registration_id));
     }
 
     public function getPayorCheck($registration_id)
     {
         $application = Application::where('registration_id', $registration_id)->first();
-        
+
         return view('index.application.payorcheck')->withApplication($application);
     }
 
@@ -307,11 +311,11 @@ class IndexController extends Controller
         $committeetype = Committeetype::where('id', $committeetype_id)->first();
 
         $committees = Committee::where('committeetype_id', $committeetype_id)
-                               ->orderBy('serial', 'asc')
-                               ->get();
+            ->orderBy('serial', 'asc')
+            ->get();
         return view('index.committee')
-                        ->withCommitteetype($committeetype)
-                        ->withCommittees($committees);
+            ->withCommitteetype($committeetype)
+            ->withCommittees($committees);
     }
 
     public function getNotice()
@@ -340,33 +344,33 @@ class IndexController extends Controller
 
     public function storeRecruitmentApplication(Request $request)
     {
-        $this->validate($request,array(
-            'name'                      => 'required|max:255',
-            'dept'                      => 'required|max:255',
-            'hall'                      => 'required|max:255',
-            'residency'                 => 'required',
-            'session'                   => 'required',
-            'email'                     => 'required|email',
-            'contact1'                  => 'required|numeric',
-            'contact2'                  => 'required|numeric',
-            'dob'                       => 'required',
-            'bloodgroup'                => 'required',
-            'father'                    => 'required|max:255',
-            'fcontact'                  => 'sometimes|numeric',
-            'mother'                    => 'required|max:255',
-            'mcontact'                  => 'sometimes|numeric',
-            'ssc'                       => 'required|max:255',
-            'ssc_passing_year'          => 'required|max:255',
-            'hsc'                       => 'required|max:255',
-            'hsc_passing_year'          => 'required|max:255',
-            'cocurricular'              => 'required|max:255',
-            'hobby'                     => 'required|max:255',
-            'reason'                    => 'required',
-            'blogs'                     => 'sometimes|max:255',
-            'othersocieties'            => 'sometimes|max:255',
-            'image'                     => 'required|image|max:200',
-            'payment_method'            => 'required|max:255',
-            'trxid'                     => 'required|max:255'
+        $this->validate($request, array(
+            'name' => 'required|max:255',
+            'dept' => 'required|max:255',
+            'hall' => 'required|max:255',
+            'residency' => 'required',
+            'session' => 'required',
+            'email' => 'required|email',
+            'contact1' => 'required|numeric',
+            'contact2' => 'required|numeric',
+            'dob' => 'required',
+            'bloodgroup' => 'required',
+            'father' => 'required|max:255',
+            'fcontact' => 'sometimes|numeric',
+            'mother' => 'required|max:255',
+            'mcontact' => 'sometimes|numeric',
+            'ssc' => 'required|max:255',
+            'ssc_passing_year' => 'required|max:255',
+            'hsc' => 'required|max:255',
+            'hsc_passing_year' => 'required|max:255',
+            'cocurricular' => 'required|max:255',
+            'hobby' => 'required|max:255',
+            'reason' => 'required',
+            'blogs' => 'sometimes|max:255',
+            'othersocieties' => 'sometimes|max:255',
+            'image' => 'required|image|max:200',
+            'payment_method' => 'required|max:255',
+            'trxid' => 'required|max:255'
         ));
 
         $application = new Member;
@@ -397,27 +401,27 @@ class IndexController extends Controller
         $application->othersocieties = htmlspecialchars(preg_replace("/\s+/", " ", $request->othersocieties));
 
         // image upload
-        if($request->hasFile('image')) {
-            $image      = $request->file('image');
-            $filename   = str_replace(' ','',$request->name).time() .'.' . $image->getClientOriginalExtension();
-            $location   = public_path('/images/members/'. $filename);
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $filename = str_replace(' ', '', $request->name) . time() . '.' . $image->getClientOriginalExtension();
+            $location = public_path('/images/members/' . $filename);
             Image::make($image)->resize(250, 250)->save($location);
             $application->image = $filename;
         }
-        
+
         $application->payment_method = $request->payment_method;
         $application->trxid = htmlspecialchars(preg_replace("/\s+/", " ", $request->trxid));
         $application->status = 0;
 
         $lastapplication = Member::orderBy('member_id', 'desc')->first();
-        if(!empty($lastapplication)) {
-            $application->member_id = date('Y') . str_pad(((int) $lastapplication->id + 1), 3, 0, STR_PAD_LEFT );
+        if (!empty($lastapplication)) {
+            $application->member_id = date('Y') . str_pad(((int)$lastapplication->id + 1), 3, 0, STR_PAD_LEFT);
         } else {
             $application->member_id = date('Y') . '001';
         }
-        
+
         $application->save();
-        
+
         Session::flash('success', 'You have registered Successfully!');
         return redirect()->route('ongoingactivities.recruitment.newapplicant', $application->member_id);
     }
