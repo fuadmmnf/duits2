@@ -1,6 +1,6 @@
 @extends('layouts.index')
 @section('title')
-    6th IT FEST | Registration
+    Transcendence | Registration
 @endsection
 
 @section('css')
@@ -20,7 +20,7 @@
                     <h1 class="black-text">Registration Payment Check</h1>
                     <!-- end page title -->
                 </div>
-                
+
             </div>
         </div>
     </section>
@@ -31,7 +31,7 @@
             <div class="row">
                 <div class="col-md-12 center-block text-center">
                     <header>
-                    <h2>6th IT FEST | Registration</h2>
+                    <h2>Transcendence | Registration</h2>
                     </header>
                 </div>
                 <div class="col-md-12">
@@ -74,7 +74,7 @@
                                 <h3>Please pay Tk. {{ $application->amount }}/- following the process in the Next page, Click the button below.</h3>
                                 <div style="border: 2px solid #ddd; margin: 25px; max-width: 400px;">
                                     <img src="{{ asset('images/aamarpay.png') }}" class="img-responsive">
-                                    {!! 
+                                    {!!
                                     aamarpay_post_button([
                                         'cus_name'  => $application->team,
                                         'cus_email' => $application->email,

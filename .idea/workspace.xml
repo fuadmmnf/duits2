@@ -2,19 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1caba026-d838-4dc0-a08f-67be29435166" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/IndexController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/IndexController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2019_11_04_014829_create_applications_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2019_11_04_014829_create_applications_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/dashboard/pdfapplications.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/dashboard/pdfapplications.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/index/application/application.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/index/application/application.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/index/application/printreceipt.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/index/application/printreceipt.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/vendor/adminlte/page.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/vendor/adminlte/page.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/index/application/payorcheck.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/index/application/payorcheck.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/partials/_nav.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/partials/_nav.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ComposerSettings" synchronizationState="SYNCHRONIZE">
+  <component name="ComposerSettings" doNotAsk="true" synchronizationState="SYNCHRONIZE">
     <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
     <execution />
   </component>
@@ -114,6 +113,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_package_manager_path" value="npm" />
+    <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -134,7 +134,9 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1598522158484</updated>
-      <workItem from="1598522161569" duration="5279000" />
+      <workItem from="1598522161569" duration="6672000" />
+      <workItem from="1598551368899" duration="288000" />
+      <workItem from="1598640315373" duration="153000" />
     </task>
     <servers />
   </component>

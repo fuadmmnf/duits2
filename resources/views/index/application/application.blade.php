@@ -1,6 +1,6 @@
 @extends('layouts.index')
 @section('title')
-    Registration Form | 6th DUITS National Campus IT Fest
+    Registration Form | Transcendence
 @endsection
 
 @section('css')
@@ -13,7 +13,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-8 col-sm-12 wow fadeInUp" data-wow-duration="300ms">
-                    <h1 class="black-text">6<sup>th</sup> DUITS National Campus IT Fest</h1>
+                    <h1 class="black-text">Transcendence</h1>
                 </div>
 
             </div>

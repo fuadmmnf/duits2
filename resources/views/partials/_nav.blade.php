@@ -68,7 +68,7 @@
                                     <a href="{{ route('ongoingactivities.recruitment') }}" title="Recruitment Application">Member Recruitment</a>
                                 </li>
                                 <li>
-                                    <a href="{{ route('index.application') }}" title="6th DUITS National Campus IT Fest">6th IT Fest</a>
+                                    <a href="{{ route('index.application') }}" title="Transcendence">Transcendence</a>
                                 </li>
                             </ul>
                         </li>
