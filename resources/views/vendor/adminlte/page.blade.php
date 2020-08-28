@@ -188,7 +188,7 @@
                     <li class="{{ Request::is('dashboard/applications') ? 'active' : '' }}">
                         <a href="{{ route('dashboard.applications') }}">
                             <i class="fa fa-fw fa-trophy"></i>
-                            <span>Program Applications</span>
+                            <span>Transcendence Applications</span>
                         </a>
                     </li>
                     <li class="{{ Request::is('dashboard/blogs') ? 'active' : '' }}">
